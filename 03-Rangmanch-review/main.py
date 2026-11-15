@@ -1,8 +1,25 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from database import create_tables
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_tables()
+    print("Database tables created")
+    yield
+    # shutdown:cleanup here
+    print ("shutting down the app")
+
+
+
+app = FastAPI(
+
+    title =" Rangmanch Reviews Api",
+    description ="Theatre reviews API for pune Rangmanch",
+    lifespan =lifespan
+)
 
 @app.get("/")
-def read_root():
-    return{"message":"return value "}
+def root():
+    return{"message ": "Welcome to rangmanch reviews API"}
