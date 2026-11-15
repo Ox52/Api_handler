@@ -1,0 +1,6 @@
+-- python -m venv venv
+-- for gitbash source venv/Scripts/activate
+--.\venv\Scripts\Activate.ps1
+--create a file name
+--pip install "fastapi[standard]"
+--uvicorn main:app --reload
